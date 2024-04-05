@@ -1,0 +1,125 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="entry.css">
+    <style>
+        h2 {
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hh">
+        <header>
+            <center>
+                <h1>Attendance Tracking System</h1>
+            </center>
+        </header>
+        
+        <div class="menu">
+            <button onclick="toggle('dataEntry')">Data Entry</button>
+            <button onclick="toggle('attendanceEntry')">Attendance Excel Entry</button>
+        </div>
+    </div>
+    <center>
+       
+        <br>
+        <br>
+           
+        <form id="dataEntryForm" class="file-upload-form active">
+            <label for="fileDataEntry" class="file-upload-label">
+                <h2>Data Entry Form</h2>
+                <br><br><hr><br>
+                <div class="file-upload-design">
+                    <svg viewBox="0 0 640 512" height="1em">
+                        <path d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-217c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39V392c0 13.3 10.7 24 24 24s24-10.7 24-24V257.9l39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-80 80z"></path>
+                    </svg>
+                    <p>Choose a file</p>
+                    <p>or</p>
+                    <span class="browse-button">Browse file</span>
+                </div>
+                <input id="fileDataEntry" type="file" name="myfile" onchange="showFileName(this)" />
+            </label>
+        </form>
+        <div id="chosenFileNameDataEntry"></div>
+        <form id="attendanceEntryForm" class="file-upload-form hidden">
+            <label for="fileAttendanceEntry" class="file-upload-label">
+                <h2>Attendance Entry Form</h2>
+                <br><br><hr><br>
+                <div class="file-upload-design">
+                    <svg viewBox="0 0 640 512" height="1em">
+                        <path d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-217c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39V392c0 13.3 10.7 24 24 24s24-10.7 24-24V257.9l39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-80 80z"></path>
+                    </svg>
+                    <p>Choose a file</p>
+                    <p>or</p>
+                    <span class="browse-button">Browse file</span>
+                </div>
+                <input id="fileAttendanceEntry" type="file" name="myfile" onchange="showFileName(this)" />
+            </label>
+        </form>
+        <div id="chosenFileNameAttendanceEntry"></div>
+        <div class="body">
+            <div class="tabs">
+                <input checked="" value="HTML" name="fav_language" id="html" type="radio" class="input" />
+                <label for="html" class="label">Parent</label>
+                <input value="CSS" name="fav_language" id="css" type="radio" class="input" />
+                <label for="css" class="label">Teacher</label>
+                <input value="JavaScript" name="fav_language" id="javascript" type="radio" class="input" />
+                <label for="javascript" class="label">Student</label>
+            </div>
+        </div>
+        
+        <script>
+       /* function toggle(id) {
+            var forms = document.querySelectorAll('.file-upload-form');
+            for (var i = 0; i < forms.length; i++) {
+                if (forms[i].id === id + 'Form') {
+                    forms[i].classList.add('active');
+                } else {
+                    forms[i].classList.remove('active');
+                }
+            }
+            var dataEntryForm = document.getElementById('dataEntryForm');
+    var attendanceEntryForm = document.getElementById('attendanceEntryForm');
+            if (id === 'dataEntry') {
+                dataEntryForm.classList.add('active');
+                attendanceEntryForm.classList.remove('active');
+            } else if (id === 'attendanceEntry') {
+                attendanceEntryForm.classList.add('active');
+                dataEntryForm.classList.remove('active');
+            }
+        }*/
+        function toggle(id) {
+            var dataEntryForm = document.getElementById('dataEntryForm');
+            var attendanceEntryForm = document.getElementById('attendanceEntryForm');
+            
+            if (id === 'dataEntry') {
+                dataEntryForm.classList.add('active');
+                attendanceEntryForm.classList.remove('active');
+                console.log("Data Entry form activated");
+            } else if (id === 'attendanceEntry') {
+                attendanceEntryForm.classList.add('active');
+                dataEntryForm.classList.remove('active');
+                console.log("Attendance Entry form activated");
+            }
+        }
+        
+        
+        function showFileName(input) {
+            var fileName = input.files[0].name;
+            if (input.id === 'fileDataEntry') {
+                document.getElementById('chosenFileNameDataEntry').innerHTML = 'Chosen File: ' + fileName;
+            } else if (input.id === 'fileAttendanceEntry') {
+                document.getElementById('chosenFileNameAttendanceEntry').innerHTML = 'Chosen File: ' + fileName;
+            }
+        }
+        </script>
+        
+</body>
+
+</html>
